@@ -1,0 +1,9 @@
+tqdm
+tensorflow<2.10
+pandas
+numpy
+# opencv-python
+notebook
+seaborn
+
+# -e .
