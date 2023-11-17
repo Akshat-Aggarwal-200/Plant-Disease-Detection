@@ -1,44 +1,44 @@
 import os
 import matplotlib.pyplot as plt
-# %matplotlib inline
 from PIL import Image
 import random
 
-def load_sample_images(data_dir : str, num_samples = 5):
+def load_sample_images(data_dir, num_samples_per_class=5):
     """
-    Load and display a random sample of images from the dataset.
+    Load and display a random sample of images from each class in the dataset.
 
     Parameters:
-    - data_dir(str) : Path to dirctory containing the dataset.
-    - num_samples (int) : Number of samples to display.
+    - data_dir (str): Path to the directory containing class folders in the dataset.
+    - num_samples_per_class (int): Number of samples to display for each class.
     """
+    # Get the list of class folders
+    classes = os.listdir(data_dir)
 
-    # List all image files in data dirctory
-    image_files = [f for f in os.listdir(data_dir) if f.endswith(('.jpg','.jpeg','.png'))]
-
-    #Randomply select a subset of images
-    sample_files = random.sample(image_files, min(num_samples, len(image_files)))
-
-    # Display sample images
-    plt.figure(figsize=(15,5))
-    for i,filename in enumerate(sample_files, 1):
-        image_path = os.path.join(data_dir, filename)
-        img = Image.open(image_path)
-        plt.subplot(1, num_samples,i)
-        plt.imshow(img)
-        plt.title(f"sample {i}")
-        plt.axis("off")
-    plt.show
+    # Display a random sample of images for each class
+    plt.figure(figsize=(15, len(classes) * 3))
+    for i, class_name in enumerate(classes, 1):
+        class_dir = os.path.join(data_dir, class_name)
+        image_files = [f for f in os.listdir(class_dir) if f.endswith(('.JPG', '.JPEG', '.PNG'))]
+        sample_files = random.sample(image_files, min(num_samples_per_class, len(image_files)))
+    
+        for j, filename in enumerate(sample_files, 1):
+            image_path = os.path.join(class_dir, filename)
+            img = Image.open(image_path)
+            plt.subplot(len(classes), num_samples_per_class, (i - 1) * num_samples_per_class + j)
+            plt.imshow(img)
+            plt.title(f"Class: {class_name}\nSample {j}")
+            plt.axis("off")
+    plt.show()
 
 def explore_data_distribution(data_dir):
     """
     Explore and visualize the class distribution of the dataset.
-    
+
     Parameters:
-    - data_dir (str): Path to the directory containing the dataset.
+    - data_dir (str): Path to the directory containing class folders in the dataset.
     """
-    # Assuming subdirectories in data_dir represent different classes
-    classes = sorted(os.listdir(data_dir))
+    # Get the list of class folders
+    classes = os.listdir(data_dir)
 
     # Count the number of images in each class
     class_counts = {cls: len(os.listdir(os.path.join(data_dir, cls))) for cls in classes}
@@ -52,7 +52,6 @@ def explore_data_distribution(data_dir):
 
 if __name__ == "__main__":
     # Example usage
-    # project_root = "D:\\Data Science\\Project\\Plant-Disease-Detection"
     data_directory = "data\\raw"  # Update with the path to your raw data directory
     load_sample_images(data_directory)
     explore_data_distribution(data_directory)
