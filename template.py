@@ -4,25 +4,24 @@ import logging
 
 logging.basicConfig(level=logging.INFO, format='[%(asctime)s]:%(message)s')
 
-project_name = "CNN_Classifier"
-
 list_of_files = [
     ".github/workflows/.gitkeep",
-    f"src/{project_name}/__init__.py",
-    f"src/{project_name}/components/__init__.py",
-    f"src/{project_name}/utils/__init__.py",
-    f"src/{project_name}/config/__init__.py",
-    f"src/{project_name}/pipeline/__init__.py",
-    f"src/{project_name}/entity/__init__.py",
-    f"src/{project_name}/constants/__init__.py",
-    f"src/{project_name}/config/configuration.py",
+    "src/__init__.py",
+    "src/data_preprocessing/__init__.py",
+    "src/utils/__init__.py",
+    # "src/config/__init__.py",
+    "src/model_training/__init__.py",
+    "src/model_evaluation/__init__.py",
+    # "src/entity/__init__.py",
+    # "src/constants/__init__.py",
+    # "src/config/configuration.py",
     "config/config.yaml",
-    "dvc.yaml",
+    # "dvc.yaml",
     "requirements.txt",
-    "params.yaml",
+    # "params.yaml",
     "setup.py",
-    "research/trails.ipynb",
-    "templates/index.html"
+    # "research/trails.ipynb",
+    # "templates/index.html"
 ]
 
 for filepath in list_of_files:
@@ -39,3 +38,12 @@ for filepath in list_of_files:
         logging.info(f"{filename} already exist")
 
 
+
+# tensorflow<2.10
+# matplotlib
+# seaborn
+# numpy
+# pandas
+# notebook
+
+# # -e .
