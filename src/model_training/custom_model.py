@@ -6,11 +6,7 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 from tensorflow.keras.optimizers import Adam
 from train_utils import load_data, train_model, evaluate_model
 
-if __name__ == "__main__":
-    input_directory = "data\\split"
-    output_directory = "model_saved"
-    no_of_clases = len(os.listdir(os.path.join(input_directory, 'train')))
-
+def custom_model(input_directory, output_directory,no_of_clases):
     # Define and train custom TensorFlow model
     custom_model = Sequential([
         # Define your custom model architecture here
@@ -30,3 +26,9 @@ if __name__ == "__main__":
     custom_train_generator = load_data(input_directory, input_size=(256, 256), subset='training')
     custom_validation_generator = load_data(input_directory, input_size=(256, 256), subset='validation')
     train_model(custom_model, custom_train_generator, custom_validation_generator, os.path.join(output_directory, 'custom_model.h5'))
+
+if __name__ == "__main__":
+    input_directory = "data\\split"
+    output_directory = "model_saved"
+    no_of_clases = len(os.listdir(os.path.join(input_directory, 'train')))
+    custom_model(input_directory,output_directory,no_of_clases)
