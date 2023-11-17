@@ -6,10 +6,10 @@ from tensorflow.keras.applications.inception_v3 import InceptionV3
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import GlobalAveragePooling2D, Dense
 from tensorflow.keras.optimizers import Adam
-from utils.train_utils import load_data, train_model, evaluate_model
+from train_utils import load_data, train_model, evaluate_model
 
 if __name__ == "__main__":
-    input_directory = ".data\\split"
+    input_directory = "data\\split"
     output_directory = "model_saved"
     no_of_clases = len(os.listdir(os.path.join(input_directory, 'train')))
 
