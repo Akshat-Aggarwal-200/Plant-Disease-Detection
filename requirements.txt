@@ -2,10 +2,14 @@ tqdm
 tensorflow<2.10
 pandas
 numpy
-# opencv-python
 notebook
 seaborn
 imgaug
 scikit-learn
+fastapi
+uvicorn
+python-multipart
+pillow
+tenorflow-serving-api==2.9.3
 
 # -e .
